@@ -1,18 +1,11 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 
-const INITIAL_STATE = {
-	data: ["React Native", "ReactJS"],
-};
+import calculatorReducer from "./Calculator/Calculator.reducer";
 
-function courses(state = INITIAL_STATE, action) {
-	switch ((action, type)) {
-		case "ADD_COURSE":
-			return { ...state, data: [...state.data, action.title] };
-		default:
-			return state;
-	}
-}
+const rootReducer = combineReducers({
+	calculator: calculatorReducer,
+});
 
-const store = createStore(courses);
+const store = createStore(rootReducer);
 
 export default store;
